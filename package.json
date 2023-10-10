@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "assert": "^2.0.0",
+    "chromedriver": "^117.0.3",
+    "mocha": "^10.2.0",
+    "selenium-webdriver": "^4.13.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  }
+}
