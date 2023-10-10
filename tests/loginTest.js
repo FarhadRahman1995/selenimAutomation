@@ -76,7 +76,6 @@ async function sleep(ms) {
 
         // Find the dropdown element by its ID
         const dropdown = await driver.findElement(By.id('task_selector'));
-        const dropdown = await driver.findElement(By.id('task_selector'));
 
         // Scroll the element into view
         await driver.executeScript("arguments[0].scrollIntoView();", dropdown);
