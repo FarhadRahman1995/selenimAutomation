@@ -72,6 +72,8 @@ async function sleep(ms) {
     await boardOption.click();
     await sleep(10000);
     
+/* I"VE COMPLETED BOARD AND NEED TO FIX FOR TASK SELECTION /*
+
         // Find the dropdown element by its ID
         const dropdown = await driver.findElement(By.id('task_selector'));
 
