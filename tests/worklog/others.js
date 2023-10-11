@@ -1,8 +1,16 @@
 const { Builder, By, until } = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
-const assert = require('assert');
+// const assert = require('assert');
+const invalidFormData = {
+  userName: 'farhadreg8sep7',
+  password: '123456'
+};
 
-async function main() {
+const validFormData = {
+  userName: 'farhadreg8sep',
+  password: '123456'
+};
+async function main(formValues) {
   const driver = await new Builder().forBrowser('chrome').build();
 async function sleep(ms) {
     await new Promise(resolve => setTimeout(resolve, ms));
@@ -13,18 +21,18 @@ async function sleep(ms) {
     await driver.manage().window().maximize();
     await driver.manage().setTimeouts({ implicit: 10000 });
 
-    await driver.findElement(By.id('username')).sendKeys('farhadreg8sep');
-    await driver.findElement(By.id('password')).sendKeys('123456');
+    await driver.findElement(By.id('username')).sendKeys(formValues.userName);
+    await driver.findElement(By.id('password')).sendKeys(formValues.password);
     await driver.findElement(By.xpath("//*[@id='kt_login_signin_form']/div[4]/button")).click();
     await sleep(5000);
 //MODAL CLOSE
     // Locate the modal dialog element (you may use any suitable locator for the modal).
-        const modal = await driver.findElement(By.id('noticeModalContent')); // Replace with the ID or any suitable locator for the modal.
+        const modal = await driver.findElement(By.id('noticeModalContent'));
 
         // Check if the modal is displayed.
         if (await modal.isDisplayed()) {
           // Locate the close button within the modal and click it.
-          const closeButton = await modal.findElement(By.className('btn btn-secondary notice-cancel-btn')); // Replace with the ID or any suitable locator for the close button.
+          const closeButton = await modal.findElement(By.className('btn btn-secondary notice-cancel-btn'));
           await closeButton.click();
           console.log('Closed the modal.');
         } else {
@@ -34,7 +42,7 @@ async function sleep(ms) {
     
     await driver.findElement(By.xpath('/html/body/div[1]/div/div[1]/div[2]/div[1]/ul/li[6]/a')).click();
 
-    // Others Source
+    // Others Source start from here
     await driver.findElement(By.linkText('Add Worklog')).click();
     await sleep(5000);
     await driver.findElement(By.id('others-connected')).click();
@@ -45,10 +53,10 @@ async function sleep(ms) {
 //Customer Selection
     await driver.findElement(By.id('customer_id')).click();
     await sleep(3000);
-    // Define the index of the option you want to select.
-    const customerIndexToSelect = 1; // Replace with the index you want to select (0-based index).
+    // Defining the index of the option you want to select.
+    const customerIndexToSelect = 1;
 
-    // Locate all the option elements within the dropdown.
+    // Locating all the option elements within the dropdown.
     const customerOptions = await driver.findElements(By.css('#customer_id option'));
 
     if (customerIndexToSelect >= 0 && customerIndexToSelect < customerOptions.length) {
@@ -64,9 +72,9 @@ async function sleep(ms) {
     await driver.findElement(By.id('project_id')).click();
     await sleep(3000);
     // Define the index of the option you want to select.
-    const projectIndexToSelect = 1; // Replace with the index you want to select (0-based index).
+    const projectIndexToSelect = 1;
 
-    // Locate all the option elements within the dropdown.
+    // Locating all the option elements within the dropdown.
     const projectOptions = await driver.findElements(By.css('#project_id option'));
 
     if (projectIndexToSelect >= 0 && projectIndexToSelect < projectOptions.length) {
@@ -80,8 +88,6 @@ async function sleep(ms) {
     await sleep(3000);
     const checkbox = await driver.findElement(By.id('use_previous_task')).click();
     await sleep(3000);
-    // await driver.executeScript("arguments[0].style.display='none';", checkbox);
-    // await sleep(5000);
 //Task selectio/input task name
     const inputField = await driver.wait(until.elementLocated(By.id('task_title')), 10000);
     await sleep(2000);
@@ -107,4 +113,5 @@ async function sleep(ms) {
   }
 }
 
-main();
+main(invalidFormData);
+main(validFormData);

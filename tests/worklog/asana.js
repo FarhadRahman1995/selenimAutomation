@@ -1,6 +1,6 @@
 const { Builder, By, until } = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
-const assert = require('assert');
+// const assert = require('assert');
 
 async function main() {
   const driver = await new Builder().forBrowser('chrome').build();
@@ -19,12 +19,12 @@ async function sleep(ms) {
     await sleep(5000);
 //MODAL CLOSE
     // Locate the modal dialog element (you may use any suitable locator for the modal).
-        const modal = await driver.findElement(By.id('noticeModalContent')); // Replace with the ID or any suitable locator for the modal.
+        const modal = await driver.findElement(By.id('noticeModalContent'));
 
         // Check if the modal is displayed.
         if (await modal.isDisplayed()) {
           // Locate the close button within the modal and click it.
-          const closeButton = await modal.findElement(By.className('btn btn-secondary notice-cancel-btn')); // Replace with the ID or any suitable locator for the close button.
+          const closeButton = await modal.findElement(By.className('btn btn-secondary notice-cancel-btn'));
           await closeButton.click();
           console.log('Closed the modal.');
         } else {
