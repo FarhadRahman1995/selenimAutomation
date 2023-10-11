@@ -1,6 +1,6 @@
 const { Builder, By, until } = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
-const assert = require('assert');
+// const assert = require('assert');
 
 async function main() {
   const driver = await new Builder().forBrowser('chrome').build();
@@ -13,7 +13,7 @@ async function sleep(ms) {
     await driver.manage().window().maximize();
     await driver.manage().setTimeouts({ implicit: 10000 });
 
-    await driver.findElement(By.id('username')).sendKeys('farhadreg8sep');
+    await driver.findElement(By.id('username')).sendKeys('farhadreg8sep7');
     await driver.findElement(By.id('password')).sendKeys('123456');
     await driver.findElement(By.xpath("//*[@id='kt_login_signin_form']/div[4]/button")).click();
     await sleep(5000);
@@ -24,8 +24,8 @@ async function sleep(ms) {
         // Check if the modal is displayed.
         if (await modal.isDisplayed()) {
           // Locate the close button within the modal and click it.
-          const closeButton = await modal.findElement(By.className('btn btn-secondary notice-cancel-btn')); // Replace with the ID or any suitable locator for the close button.
-          await closeButton.click();
+          const closeButton =  modal.findElement(By.className('btn btn-secondary notice-cancel-btn')); // Replace with the ID or any suitable locator for the close button.
+           closeButton.click();
           console.log('Closed the modal.');
         } else {
           console.log('Modal is not displayed.');
