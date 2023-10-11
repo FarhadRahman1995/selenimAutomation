@@ -6,6 +6,6 @@
     "selenium-webdriver": "^4.13.0"
   },
   "scripts": {
-    "test": "mocha"
+  "login":"node tests/loginTest.js"
   }
 }
