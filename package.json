@@ -6,6 +6,8 @@
     "selenium-webdriver": "^4.13.0"
   },
   "scripts": {
-    "test": "mocha"
+  "trello":"node tests/worklog/trello.js",
+  "others":"node tests/worklog/others.js",
+  "asana":"node tests/worklog/asana.js"
   }
 }

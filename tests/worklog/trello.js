@@ -16,8 +16,23 @@ async function sleep(ms) {
     await driver.findElement(By.id('username')).sendKeys('farhadreg8sep');
     await driver.findElement(By.id('password')).sendKeys('123456');
     await driver.findElement(By.xpath("//*[@id='kt_login_signin_form']/div[4]/button")).click();
+    await sleep(5000);
+//MODAL CLOSE
+    // Locate the modal dialog element (you may use any suitable locator for the modal).
+        const modal = await driver.findElement(By.id('noticeModalContent')); // Replace with the ID or any suitable locator for the modal.
 
-    await driver.findElement(By.xpath('/html/body/div[1]/div/div[1]/div[2]/div[1]/ul/li[6]/a')).click(); 
+        // Check if the modal is displayed.
+        if (await modal.isDisplayed()) {
+          // Locate the close button within the modal and click it.
+          const closeButton = await modal.findElement(By.className('btn btn-secondary notice-cancel-btn')); // Replace with the ID or any suitable locator for the close button.
+          await closeButton.click();
+          console.log('Closed the modal.');
+        } else {
+          console.log('Modal is not displayed.');
+        }
+        await sleep(5000);
+    
+    await driver.findElement(By.xpath('/html/body/div[1]/div/div[1]/div[2]/div[1]/ul/li[6]/a')).click();
 
     // Trello Source
     await driver.findElement(By.linkText('Connected Apps')).click();
@@ -70,7 +85,7 @@ async function sleep(ms) {
     const boardOption = await driver.findElement(By.css(`#task_board option[value="${boardOptionValue}"]`));
     // Click the option to select it
     await boardOption.click();
-    await sleep(10000);
+    await sleep(5000);
     
 /* I"VE COMPLETED BOARD AND NEED TO FIX FOR TASK SELECTION BELOW */
 
