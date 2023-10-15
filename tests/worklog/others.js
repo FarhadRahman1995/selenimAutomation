@@ -1,10 +1,6 @@
 const { Builder, By, until } = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
 // const assert = require('assert');
-const invalidFormData = {
-  userName: 'farhadreg8sep7',
-  password: '123456'
-};
 
 const validFormData = {
   userName: 'farhadreg8sep',
@@ -113,5 +109,4 @@ async function sleep(ms) {
   }
 }
 
-main(invalidFormData);
 main(validFormData);
