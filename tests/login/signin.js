@@ -30,12 +30,12 @@ async function sleep(ms) {
   try {
     await driver.get('https://app.hellohrm.com/login');
     await driver.manage().window().maximize();
-    await driver.manage().setTimeouts({ implicit: 20000 });
+    await driver.manage().setTimeouts({ implicit: 10000 });
 
     await driver.findElement(By.id('username')).sendKeys(formValues.userName);
     await driver.findElement(By.id('password')).sendKeys(formValues.password);
     await driver.findElement(By.xpath("//*[@id='kt_login_signin_form']/div[4]/button")).click();
-    await sleep(20000);
+    await sleep(10000);
 
       }
 
@@ -46,7 +46,13 @@ async function sleep(ms) {
   }
 }
 
-main(validFormData);
-main(invalidFormData);
-main(sqlinjectFormData);
-main(jsinjectFormData);
+Promise.all([
+  main(validFormData),
+  main(invalidFormData),
+  main(sqlinjectFormData),
+  main(jsinjectFormData)
+]).then(() => {
+  console.log("All tests completed.");
+}).catch((error) => {
+  console.error("At least one test failed:", error);
+});
